@@ -19,6 +19,7 @@ Route::get('/products/brands/{id}', [App\Http\Controllers\Frontend\FrontControll
 
 //cart
 Route::post('/cart/store', [App\Http\Controllers\Frontend\CartController::class, 'cartStore'])->name('cart.store');
+Route::post('/cart/delete', [App\Http\Controllers\Frontend\CartController::class, 'deleteCart'])->name('cart.delete');
 
 
 Auth::routes([

@@ -213,6 +213,37 @@ $(document).on('click', '.add-to-cart-button', function(e) {
     });
 
 })
+
+$(document).on('click', '.delete-item-button', function(e) {
+    e.preventDefault();
+    var id = $(this).data('id');
+    var token = "{{csrf_token()}}"
+    var path = "{{route('cart.delete')}}";
+
+    $.ajax({
+        url: path,
+        method: 'POST',
+        dataType: 'JSON',
+        data: {
+            cart_id: id,
+            _token: token
+        },
+        success: function(data) {
+            if (data['status']) {
+                swal({
+                    title: "Product deleted from the cart!",
+                    icon: "success",
+                    button: "ok!",
+                });
+            }
+            $('body #header-ajax').html(data['header']);
+        },
+        error: function(error) {
+            console.log(error)
+        },
+    });
+
+})
 </script>
 </body>
 

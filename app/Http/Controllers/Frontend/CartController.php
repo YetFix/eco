@@ -21,7 +21,7 @@ class CartController extends Controller
         }
         $result= Cart::instance('shopping')->add($product_id,
         $product[0]['title'],$product_quantity,$price)->associate(
-            'App\Models\Product'
+            '\App\Models\Product'
         );
         if($result){
             $response['status']=true;
@@ -33,6 +33,20 @@ class CartController extends Controller
             $header =view('front.partials.header')->render();
             $response['header']=$header;
         }
+
+        return $response;
+    }
+
+    public function deleteCart(Request $request){
+        $id= $request->input('cart_id');
+        $result= Cart::instance('shopping')->remove($id);
+        if($request->ajax()){
+            $header =view('front.partials.header')->render();
+            $response['header']=$header;
+        }
+        $response['status']=true;
+        $response['total']=Cart::subtotal();
+        $response['cart_count']=Cart::instance('shopping')->count();
 
         return $response;
     }

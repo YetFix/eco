@@ -5,7 +5,7 @@
         <h1>Shopping Cart</h1>
     </div>
     <div class="ps-section__content">
-        <form class="form--shopping-cart" method="post" action="https://martfury.botble.com/cart/update">
+        <form class="form--shopping-cart" method="post" action="">
             <input type="hidden" name="_token" value="rGmIhzQnCbJ4DnAl8M7QwSPlWCLmWeec3trz3hfr">
             <div class="table-responsive">
                 <table class="table ps-table--shopping-cart">

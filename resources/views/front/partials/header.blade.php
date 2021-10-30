@@ -62,6 +62,7 @@
         href="{{ asset('assets1/themes/martfury/plugins/font-awesome/css/font-awesome.min.css') }}">
     <link media="all" type="text/css" rel="stylesheet"
         href="{{ asset('assets1/themes/martfury/css/stylefa29.css?v=1.13.0') }}">
+    <link media="all" type="text/css" rel="stylesheet" href="{{ asset('css/cart.css') }}">
 </head>
 
 <body>
@@ -150,8 +151,35 @@
                                     class="icon-bag2"></i><span><i>{{\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->count()}}</i></span></a>
                             <div class="ps-cart--mobile">
                                 <div class="ps-cart__content">
-                                    <div class="ps-cart__items ps-cart_no_items">
-                                        <span class="cart-empty-message">No products in the cart.</span>
+                                    <div class="shopping-cart">
+                                        <div class="shopping-cart-header">
+                                            <i class="fa fa-shopping-cart cart-icon"></i><span
+                                                class="badge">{{\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->count()}}</span>
+                                            <div class="shopping-cart-total">
+                                                <span class="lighter-text">Total:</span>
+                                                <span
+                                                    class="main-color-text">{{\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->subtotal()}}</span>
+                                            </div>
+                                        </div>
+                                        <ul class="shopping-cart-items">
+                                            @foreach(\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->content()
+                                            as $item)
+                                            <li class="clearfix d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <img width="60"
+                                                        src="{{URL::asset('backend/products')}}/{{$item->model->photo}}"
+                                                        alt="item1" />
+                                                    <span class="item-name">{{$item->name}}</span>
+                                                    <span class="item-price">{{number_format($item->price,2)}}</span>
+                                                    <span class="item-quantity">Quantity:
+                                                        {{$item->qty}}</span>
+                                                </div>
+                                                <i class="ml-5 fa fa-trash delete-item-button"
+                                                    data-id="{{$item->rowId}}" aria-hidden="true"></i>
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                        <a href="/cart" class="button">Checkout</a>
                                     </div>
                                 </div>
                             </div>
@@ -261,20 +289,7 @@
             </form>
         </div>
     </header>
-    <div class="ps-panel--sidebar" id="cart-mobile" style="display: none">
-        <div class="ps-panel__header">
-            <h3>Shopping Cart</h3>
-        </div>
-        <div class="navigation__content">
-            <div class="ps-cart--mobile">
-                <div class="ps-cart__content">
-                    <div class="ps-cart__items ps-cart_no_items">
-                        <span class="cart-empty-message">No products in the cart.</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <div class="ps-panel--sidebar" id="navigation-mobile" style="display: none">
         <div class="ps-panel__header">
             <h3>Categories</h3>

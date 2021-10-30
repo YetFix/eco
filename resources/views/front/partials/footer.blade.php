@@ -143,7 +143,7 @@
         </div>
     </div>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{{asset('js/jquery.js')}}"></script>
 
 <script src="{{ asset('assets1/themes/martfury/plugins/nouislider/nouislider.min.js') }}"
     type="2fc93ab7b3487bec21ef2992-text/javascript"></script>
@@ -179,6 +179,8 @@
 
 <script src="{{ asset('assets1/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}"
     data-cf-settings="2fc93ab7b3487bec21ef2992-|49" defer=""></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 @yield('js')
 
 <script>
@@ -187,16 +189,26 @@ $(document).on('click', '.add-to-cart-button', function(e) {
     var id = $(this).data('product-id');
     var quantity = $(this).data('quantity');
     var token = "{{csrf_token()}}"
-    alert(token);
+    var path = "{{route('cart.store')}}";
 
     $.ajax({
-        url: '',
+        url: path,
         method: 'POST',
         dataType: 'JSON',
         data: {
             product_id: id,
             product_quantity: quantity,
             _token: token
+        },
+        success: function(data) {
+            $('body #header-ajax').html(data['header']);
+            if (data['status']) {
+                swal({
+                    title: "Product Added to cart!",
+                    icon: "success",
+                    button: "ok!",
+                });
+            }
         }
     });
 

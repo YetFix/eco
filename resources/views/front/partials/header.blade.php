@@ -36,7 +36,7 @@
     <meta property="og:description" content="">
     <meta property="og:url" content="https://martfury.botble.com">
     <meta property="og:type" content="article">
-    <meta name="twitter:title" content="Martfury - Laravel Ecommerce system">
+    <meta name="twitter:title" content="Bshuddhoshop- Laravel Ecommerce system">
     <meta name="twitter:description" content="">
 
 
@@ -69,7 +69,7 @@
             $categories=\App\Models\Category::all();
             ?>
 
-    <header class="header header--1" data-sticky="true">
+    <header class="header header--1" data-sticky="true" id="header-ajax">
         <div class="header__top">
             <div class="ps-container">
                 <div class="header__left">
@@ -147,7 +147,7 @@
                                 class="icon-heart"></i><span><i>0</i></span></a>
                         <div class="ps-cart--mini">
                             <a class="header__extra btn-shopping-cart" href="/cart"><i
-                                    class="icon-bag2"></i><span><i>0</i></span></a>
+                                    class="icon-bag2"></i><span><i>{{\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->count()}}</i></span></a>
                             <div class="ps-cart--mobile">
                                 <div class="ps-cart__content">
                                     <div class="ps-cart__items ps-cart_no_items">
@@ -234,8 +234,9 @@
             <div class="navigation__right">
                 <div class="header__actions">
                     <div class="ps-cart--mini">
-                        <a class="header__extra btn-shopping-cart" href="javascript:void(0)">
-                            <i class="icon-bag2"></i><span><i>0</i></span>
+                        <a class="header__extra btn-shopping-cart" href="/cart">
+                            <i
+                                class="icon-bag2"></i><span><i>{{\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->count()}}</i></span>
                         </a>
                         <div class="ps-cart--mobile">
                             <div class="ps-cart__content">
@@ -296,15 +297,15 @@
     </div>
     <div class="navigation--list">
         <div class="navigation__content">
-            <a class="navigation__item ps-toggle--sidebar" href="#navigation-mobile"><i class="icon-list4"></i><span>
-                    Categories</span></a>
+            <a class="navigation__item ps-toggle--sidebar" href="#menu-mobile"><i class="icon-list4"></i><span>
+                    Menu</span></a>
             <a class="navigation__item ps-toggle--sidebar" href="#search-sidebar"><i class="icon-magnifier"></i><span>
                     Search</span></a>
-            <a class="navigation__item ps-toggle--sidebar" href="#cart-mobile"><i class="icon-bag2"></i><span>
+            <a class="navigation__item " href="{{route('cart')}}"><i class="icon-bag2"></i><span>
                     Cart</span></a>
         </div>
     </div>
-    <div class="ps-panel--sidebar" id="search-sidebar" style="display: none">
+    <div class="ps-panel--sidebar" id="search-sidebar" style="display: block">
         <div class="ps-panel__header">
             <form class="ps-form--search-mobile" action="" method="get">
                 <div class="form-group--nest">
@@ -315,7 +316,7 @@
         </div>
         <div class="navigation__content"></div>
     </div>
-    <div class="ps-panel--sidebar" id="menu-mobile" style="display: none">
+    <div class="ps-panel--sidebar" id="menu-mobile" style="display: block">
         <div class="ps-panel__header">
             <h3>Menu</h3>
         </div>

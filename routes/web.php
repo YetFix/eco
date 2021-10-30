@@ -9,13 +9,16 @@ Route::get('/blog', [App\Http\Controllers\Frontend\FrontController::class, 'blog
 Route::get('/contact', [App\Http\Controllers\Frontend\FrontController::class, 'contact']);
 Route::get('/about', [App\Http\Controllers\Frontend\FrontController::class, 'about']);
 Route::get('/faq', [App\Http\Controllers\Frontend\FrontController::class, 'faq']);
-Route::get('/cart', [App\Http\Controllers\Frontend\FrontController::class, 'cart']);
+Route::get('/cart', [App\Http\Controllers\Frontend\FrontController::class, 'cart'])->name('cart');
 Route::get('/wishlist', [App\Http\Controllers\Frontend\FrontController::class, 'wishlist']);
 Route::get('/orders/track', [App\Http\Controllers\Frontend\FrontController::class, 'track']);
 Route::get('/checkout', [App\Http\Controllers\Frontend\FrontController::class, 'checkout']);
 Route::get('/product/{id}', [App\Http\Controllers\Frontend\FrontController::class, 'single'])->name('single');
 Route::get('/products/category/{id}', [App\Http\Controllers\Frontend\FrontController::class, 'productsByCategory'])->name('categoryWise');
 Route::get('/products/brands/{id}', [App\Http\Controllers\Frontend\FrontController::class, 'productsByBrands'])->name('brandWise');
+
+//cart
+Route::post('/cart/store', [App\Http\Controllers\Frontend\CartController::class, 'cartStore'])->name('cart.store');
 
 
 Auth::routes([

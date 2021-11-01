@@ -202,9 +202,10 @@ $(document).on('click', '.add-to-cart-button', function(e) {
         },
         success: function(data) {
             $('body #header-ajax').html(data['header']);
+
             if (data['status']) {
                 swal({
-                    title: "Product Added to cart!",
+                    title: "Added to cart!",
                     icon: "success",
                     button: "ok!",
                 });
@@ -231,12 +232,15 @@ $(document).on('click', '.delete-item-button', function(e) {
         success: function(data) {
             if (data['status']) {
                 swal({
-                    title: "Product deleted from the cart!",
+                    title: "Deleted from the cart!",
                     icon: "success",
                     button: "ok!",
                 });
             }
             $('body #header-ajax').html(data['header']);
+        },
+        complete: function() {
+            location.reload();
         },
         error: function(error) {
             console.log(error)

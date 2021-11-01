@@ -1,13 +1,14 @@
 @extends('front.master')
 @section('content')
+@if(\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->count()>0)
 <div class="container mt-40">
     <div class="ps-section__header">
         <h1>Shopping Cart</h1>
     </div>
-    <div class="ps-section__content">
+    <div class="ps-section__content mb-3">
         <form class="form--shopping-cart" method="post" action="">
-            <input type="hidden" name="_token" value="rGmIhzQnCbJ4DnAl8M7QwSPlWCLmWeec3trz3hfr">
-            <div class="table-responsive">
+
+            <div class="table-responsive" id="cart_list">
                 <table class="table ps-table--shopping-cart">
                     <thead>
                         <tr>
@@ -19,125 +20,47 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach(\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->content() as $item)
                         <tr>
                             <td>
-                                <input type="hidden" name="items[9faab3c21db474a9d05a07b370f66ae2][rowId]"
-                                    value="9faab3c21db474a9d05a07b370f66ae2">
                                 <div class="ps-product--cart">
                                     <div class="ps-product__thumbnail">
-                                        <a href="https://martfury.botble.com/products/dual-camera-20mp">
-                                            <img src="https://martfury.botble.com/storage/products/1-150x150.jpg"
-                                                alt="Dual Camera 20MP">
+                                        <a href="">
+                                            <img src="{{URL::asset('backend/products')}}/{{$item->model->photo}}"
+                                                alt="{{$item->name}}">
                                         </a>
                                     </div>
                                     <div class="ps-product__content">
-                                        <a href="https://martfury.botble.com/products/dual-camera-20mp">Dual Camera
-                                            20MP</a>
-                                        <p class="d-block mb-0 sold-by"><small>Sold by: <a
-                                                    href="https://martfury.botble.com/stores/dr-pascale-collins">Dr.
-                                                    Pascale Collins</a></small></p>
-                                        <p class="mb-0"><small>(Color: Black, Size: XXL)</small></p>
+                                        <a href="">{{$item->name}}</a>
+                                        <p class="d-block mb-0 sold-by"><small>Sold
+                                                by:{{\App\Models\User::find($item->model->vendor_id)->full_name}} <a
+                                                    href=""></a></small>
+                                        </p>
+
                                     </div>
                                 </div>
                             </td>
                             <td class="price text-center">
                                 <div class="product__price  sale ">
-                                    <span>$47.35</span>
-                                    <small><del>$80.25</del></small>
+                                    <span>{{number_format($item->price,2)}}</span>
                                 </div>
                             </td>
                             <td class="text-center">
                                 <div class="form-group--number product__qty">
-                                    <button class="up">+</button>
-                                    <button class="down">-</button>
-                                    <input type="text" class="form-control qty-input" value="1" title="Qty"
-                                        name="items[9faab3c21db474a9d05a07b370f66ae2][values][qty]" readonly="">
+
+                                    <input type="number" step="1" min="1" max="99" class="form-control qty-input"
+                                        data-id="{{$item->rowId}}" id="qty-input-{{$item->rowId}}"
+                                        value="{{$item->qty}}" title="Qty" name="cart-iten">
+                                    <input type="hidden" data-id="{{$item->rowId}}"
+                                        data-product-quantity="{{$item->model->stock}}"
+                                        id="update-cart-{{$item->rowId}}">
                                 </div>
                             </td>
-                            <td class="text-center">$47.35</td>
-                            <td><a href="#"
-                                    data-url="https://martfury.botble.com/cart/remove/9faab3c21db474a9d05a07b370f66ae2"
-                                    class="remove-cart-button"><i class="icon-cross"></i></a></td>
+                            <td class="text-center">{{$item->subtotal()}}</td>
+                            <td><a href="#" class="remove-cart-button delete-item-button" data-id="{{$item->rowId}}"><i
+                                        class="icon-cross"></i></a></td>
                         </tr>
-                        <tr>
-                            <td>
-                                <input type="hidden" name="items[d6d477b2293d3ce2768807158047c19f][rowId]"
-                                    value="d6d477b2293d3ce2768807158047c19f">
-                                <div class="ps-product--cart">
-                                    <div class="ps-product__thumbnail">
-                                        <a href="https://martfury.botble.com/products/smart-watches">
-                                            <img src="https://martfury.botble.com/storage/products/2-150x150.jpg"
-                                                alt="Smart Watches">
-                                        </a>
-                                    </div>
-                                    <div class="ps-product__content">
-                                        <a href="https://martfury.botble.com/products/smart-watches">Smart Watches</a>
-                                        <p class="d-block mb-0 sold-by"><small>Sold by: <a
-                                                    href="https://martfury.botble.com/stores/dr-pascale-collins">Dr.
-                                                    Pascale Collins</a></small></p>
-                                        <p class="mb-0"><small>(Color: Black, Size: S)</small></p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="price text-center">
-                                <div class="product__price  sale ">
-                                    <span>$34.02</span>
-                                    <small><del>$40.50</del></small>
-                                </div>
-                            </td>
-                            <td class="text-center">
-                                <div class="form-group--number product__qty">
-                                    <button class="up">+</button>
-                                    <button class="down">-</button>
-                                    <input type="text" class="form-control qty-input" value="1" title="Qty"
-                                        name="items[d6d477b2293d3ce2768807158047c19f][values][qty]" readonly="">
-                                </div>
-                            </td>
-                            <td class="text-center">$34.02</td>
-                            <td><a href="#"
-                                    data-url="https://martfury.botble.com/cart/remove/d6d477b2293d3ce2768807158047c19f"
-                                    class="remove-cart-button"><i class="icon-cross"></i></a></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="hidden" name="items[197fda056988beee45e22b626858538c][rowId]"
-                                    value="197fda056988beee45e22b626858538c">
-                                <div class="ps-product--cart">
-                                    <div class="ps-product__thumbnail">
-                                        <a href="https://martfury.botble.com/products/nikon-hd-camera">
-                                            <img src="https://martfury.botble.com/storage/products/6-150x150.jpg"
-                                                alt="Nikon HD camera">
-                                        </a>
-                                    </div>
-                                    <div class="ps-product__content">
-                                        <a href="https://martfury.botble.com/products/nikon-hd-camera">Nikon HD
-                                            camera</a>
-                                        <p class="d-block mb-0 sold-by"><small>Sold by: <a
-                                                    href="https://martfury.botble.com/stores/prof-catalina-abbott">Prof.
-                                                    Catalina Abbott</a></small></p>
-                                        <p class="mb-0"><small>(Color: Green, Size: XXL)</small></p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="price text-center">
-                                <div class="product__price  sale ">
-                                    <span>$338.66</span>
-                                    <small><del>$413.00</del></small>
-                                </div>
-                            </td>
-                            <td class="text-center">
-                                <div class="form-group--number product__qty">
-                                    <button class="up">+</button>
-                                    <button class="down">-</button>
-                                    <input type="text" class="form-control qty-input" value="1" title="Qty"
-                                        name="items[197fda056988beee45e22b626858538c][values][qty]" readonly="">
-                                </div>
-                            </td>
-                            <td class="text-center">$338.66</td>
-                            <td><a href="#"
-                                    data-url="https://martfury.botble.com/cart/remove/197fda056988beee45e22b626858538c"
-                                    class="remove-cart-button"><i class="icon-cross"></i></a></td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -146,35 +69,39 @@
     <div class="ps-section__footer">
         <div class="row">
             <div class="col-lg-6 col-md-12 form-coupon-wrapper">
-                <figure>
+                @include('backend.layouts.notifications')
+                <form action="{{route('cupon.add')}}" id="cupon-form" method="POST">
+                    @csrf
                     <figcaption>Coupon Discount</figcaption>
                     <div class="form-group">
-                        <input class="form-control coupon-code" type="text" name="coupon_code" value=""
-                            placeholder="Enter coupon code">
+                        <input class="form-control coupon-code" type="text" name="code" placeholder="Enter coupon code">
                     </div>
                     <div class="form-group">
-                        <button class="ps-btn ps-btn--outline btn-apply-coupon-code" type="button"
-                            data-url="https://martfury.botble.com/coupon/apply">Apply</button>
+                        <button class="ps-btn ps-btn--outline coupon-code add-cupon" type="submit">Apply</button>
                     </div>
-                </figure>
+                </form>
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 ">
                 <div class="ps-block--shopping-total">
                     <div class="ps-block__header">
-                        <p>Subtotal <span> $420.03</span></p>
-                    </div>
-                    <div class="ps-block__header">
-                        <p>Tax <span> $42.00</span></p>
+                        <p>Subtotal
+                            <span>{{\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->subtotal()}}</span>
+                        </p>
                     </div>
                     <div class="ps-block__content">
-                        <h3>Total <span>$462.03</span></h3>
+                        <h3>Total
+                            @if(session('cupon'))
+                            <span>{{\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->subtotal()-session('cupon')['value']}}</span>
+                            @else
+                            <span>{{\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->subtotal()}}</span>
+                            @endif
+                        </h3>
                         <p><small>(Shipping fees not included)</small></p>
                     </div>
                 </div>
-                <a class="ps-btn btn-cart-button-action" href="https://martfury.botble.com/products"><i
-                        class="icon-arrow-left"></i> Back to Shop</a>
-                <a class="ps-btn ps-btn btn-cart-button-action"
-                    href="https://martfury.botble.com/checkout/3e0a4a095e069df4fd417184f40f296e">Proceed to checkout <i
+                <a class="ps-btn btn-cart-button-action" href="/shop"><i class="icon-arrow-left"></i> Back to
+                    Shop</a>
+                <a class="ps-btn ps-btn btn-cart-button-action" href="/checkout">Proceed to checkout <i
                         class="icon-arrow-right"></i></a>
             </div>
         </div>
@@ -210,10 +137,12 @@
                         </div>
                         <div class="ps-product__container">
                             <a class="ps-product__vendor"
-                                href="https://martfury.botble.com/stores/dr-pascale-collins">Dr. Pascale Collins</a>
+                                href="https://martfury.botble.com/stores/dr-pascale-collins">Dr.
+                                Pascale Collins</a>
                             <div class="ps-product__content">
                                 <a class="ps-product__title"
-                                    href="https://martfury.botble.com/products/dual-camera-20mp">Dual Camera 20MP</a>
+                                    href="https://martfury.botble.com/products/dual-camera-20mp">Dual Camera
+                                    20MP</a>
                                 <div class="rating_wrap">
                                     <div class="rating">
                                         <div class="product_rate" style="width: 71.428571428571%"></div>
@@ -253,7 +182,8 @@
                                 Flatley</a>
                             <div class="ps-product__content">
                                 <a class="ps-product__title"
-                                    href="https://martfury.botble.com/products/beat-headphone">Beat Headphone</a>
+                                    href="https://martfury.botble.com/products/beat-headphone">Beat
+                                    Headphone</a>
                                 <div class="rating_wrap">
                                     <div class="rating">
                                         <div class="product_rate" style="width: 0%"></div>
@@ -290,7 +220,8 @@
                         </div>
                         <div class="ps-product__container">
                             <a class="ps-product__vendor"
-                                href="https://martfury.botble.com/stores/prof-catalina-abbott">Prof. Catalina Abbott</a>
+                                href="https://martfury.botble.com/stores/prof-catalina-abbott">Prof. Catalina
+                                Abbott</a>
                             <div class="ps-product__content">
                                 <a class="ps-product__title"
                                     href="https://martfury.botble.com/products/red-black-headphone">Red &amp; Black
@@ -351,4 +282,104 @@
         </div>
     </div>
 </div>
+@else
+
+<div class="row">
+    <div class="col-sm-8 mx-auto text-center">
+        <img src="{{URL::asset('/noproduct.jpeg')}}" width="400" alt="empty-cart">
+        <h4>No Products in your cart! Go Shopping!</h4>
+    </div>
+</div>
+@endif
+@endsection
+
+
+@section('js')
+<script>
+$(document).on('click', '.qty-input', function(e) {
+    e.preventDefault();
+    var id = $(this).data('id');
+    var spinner = $(this);
+    var input = spinner.closest("div.product__qty").find('input[type="number"]');
+    // if (input.val() == 1) {
+    //     var newVal = parseFloat(input.val());
+    //     $('#qty-input-' + id).val(newVal);
+    // }
+    if (input.val() > 1) {
+        var newVal = parseFloat(input.val());
+        $('#qty-input-' + id).val(newVal);
+    }
+
+    var productQuantity = $('#update-cart-' + id).data('product-quantity');
+    update_cart(id, productQuantity);
+})
+
+function update_cart(id, productQuantity) {
+    var rowId = id;
+    var product_quantity = $('#qty-input-' + rowId).val();
+    var token = "{{csrf_token()}}"
+    var path = "{{route('cart.update')}}";
+
+    $.ajax({
+        url: path,
+        method: 'POST',
+        dataType: 'JSON',
+        data: {
+            rowId: rowId,
+            product_qty: product_quantity,
+            productQuantity: productQuantity,
+            _token: token
+        },
+        success: function(data) {
+
+            if (!data['status']) {
+                alert(data['message']);
+            }
+            $('body #header-ajax').html(data['header']);
+
+        },
+        complete: function() {
+            location.reload();
+        },
+    })
+}
+
+
+$(document).on('click', '.add-cupon', function(e) {
+    e.preventDefault();
+    var code = $('input[name=code]').val();
+    $('.add-cupon').html('<i class="fa fa-spinner fa-spin"></i>Applying...');
+    $('#cupon-form').submit();
+
+    // var token = "{{csrf_token()}}"
+    // var path = "{{route('cart.delete')}}";
+
+    // $.ajax({
+    //     url: path,
+    //     method: 'POST',
+    //     dataType: 'JSON',
+    //     data: {
+    //         cart_id: id,
+    //         _token: token
+    //     },
+    //     success: function(data) {
+    //         if (data['status']) {
+    //             swal({
+    //                 title: "Deleted from the cart!",
+    //                 icon: "success",
+    //                 button: "ok!",
+    //             });
+    //         }
+    //         $('body #header-ajax').html(data['header']);
+    //     },
+    //     complete: function() {
+    //         location.reload();
+    //     },
+    //     error: function(error) {
+    //         console.log(error)
+    //     },
+    // });
+
+})
+</script>
 @endsection

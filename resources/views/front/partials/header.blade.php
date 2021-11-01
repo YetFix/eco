@@ -151,6 +151,7 @@
                                     class="icon-bag2"></i><span><i>{{\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->count()}}</i></span></a>
                             <div class="ps-cart--mobile">
                                 <div class="ps-cart__content">
+                                    @if(\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->count()>0)
                                     <div class="shopping-cart">
                                         <div class="shopping-cart-header">
                                             <i class="fa fa-shopping-cart cart-icon"></i><span
@@ -181,6 +182,11 @@
                                         </ul>
                                         <a href="/cart" class="button">Checkout</a>
                                     </div>
+                                    @else
+                                    <div class="shopping-cart border border-grey">
+                                        <h4 class="text-center" style="color:#70C3DE">No Products in your cart!!!</h4>
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -266,13 +272,13 @@
                             <i
                                 class="icon-bag2"></i><span><i>{{\Gloudemans\Shoppingcart\Facades\Cart::instance('shopping')->count()}}</i></span>
                         </a>
-                        <div class="ps-cart--mobile">
+                        <!-- <div class="ps-cart--mobile">
                             <div class="ps-cart__content">
                                 <div class="ps-cart__items ps-cart_no_items">
                                     <span class="cart-empty-message">No products in the cart.</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="ps-block--user-header">
                         <div class="ps-block__left"><a href="{{route('login')}}"><i class="icon-user"></i></a></div>

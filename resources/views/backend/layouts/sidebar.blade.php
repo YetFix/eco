@@ -199,10 +199,24 @@
                 </li>
 
                 <li>
-                    <a href="index.html" class="{{ request()->is('admin/cupon*') ? 'mm-active' : '' }}">
+                    <a href="#" class="{{ request()->is('admin/cupons*') ? 'mm-active' : '' }}">
                         <i class="metismenu-icon pe-7s-paperclip"></i>
                         Cupons
                     </a>
+                    <ul>
+                        <li>
+                            <a href="{{route('cupon.index')}}">
+                                <i class="metismenu-icon"></i>
+                                All Cupons
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('cupon.create')}}">
+                                <i class="metismenu-icon">
+                                </i>Add Cupon
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="index.html" class="{{ request()->is('admin/comment*') ? 'mm-active' : '' }}">

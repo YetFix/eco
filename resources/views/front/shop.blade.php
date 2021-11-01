@@ -33,36 +33,6 @@
                                     @endforeach
                                 </figure>
                             </aside>
-                            <!-- <aside class="widget widget_shop">
-                                <h4 class="widget-title">By Tags</h4>
-                                <figure data-height="250" class="ps-custom-scrollbar">
-                                    <div class="ps-checkbox"><input type="checkbox" name="tags[]" id="tag-2124219388-5"
-                                            value="5" class="form-control product-filter-item"> <label
-                                            for="tag-2124219388-5"><span>Office <span
-                                                    class="d-inline-block">(12)</span></span></label></div>
-                                    <div class="ps-checkbox"><input type="checkbox" name="tags[]" id="tag-2124219388-2"
-                                            value="2" class="form-control product-filter-item"> <label
-                                            for="tag-2124219388-2"><span>Mobile <span
-                                                    class="d-inline-block">(11)</span></span></label></div>
-                                    <div class="ps-checkbox"><input type="checkbox" name="tags[]" id="tag-2124219388-6"
-                                            value="6" class="form-control product-filter-item"> <label
-                                            for="tag-2124219388-6"><span>IT <span
-                                                    class="d-inline-block">(11)</span></span></label></div>
-                                    <div class="ps-checkbox"><input type="checkbox" name="tags[]" id="tag-2124219388-1"
-                                            value="1" class="form-control product-filter-item"> <label
-                                            for="tag-2124219388-1"><span>Electronic <span
-                                                    class="d-inline-block">(9)</span></span></label></div>
-                                    <div class="ps-checkbox"><input type="checkbox" name="tags[]" id="tag-2124219388-3"
-                                            value="3" class="form-control product-filter-item"> <label
-                                            for="tag-2124219388-3"><span>Iphone <span
-                                                    class="d-inline-block">(8)</span></span></label></div>
-                                    <div class="ps-checkbox"><input type="checkbox" name="tags[]" id="tag-2124219388-4"
-                                            value="4" class="form-control product-filter-item"> <label
-                                            for="tag-2124219388-4"><span>Printer <span
-                                                    class="d-inline-block">(7)</span></span></label></div>
-                                </figure>
-                            </aside> -->
-
                         </form>
                     </div>
                 </div>
@@ -97,7 +67,9 @@
                                                         {{round((($product->discount/$product->price)*100),2)}}%</div>
                                                     <ul class="ps-product__actions">
                                                         <li><a class="add-to-cart-button" data-id="1" href="#"
-                                                                title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                                                data-quantity="1" data-product-id="{{$product->id}}"
+                                                                id="add-to-cart-{{$product->id}}" title="Add To Cart"><i
+                                                                    class="icon-bag2"></i></a></li>
                                                         <li><a class="js-quick-view-button" href="#"
                                                                 title="Quick View"><i class="icon-eye"></i></a></li>
                                                         <li><a class="js-add-to-wishlist-button" href="#"

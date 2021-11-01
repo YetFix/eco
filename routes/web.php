@@ -20,7 +20,10 @@ Route::get('/products/brands/{id}', [App\Http\Controllers\Frontend\FrontControll
 //cart
 Route::post('/cart/store', [App\Http\Controllers\Frontend\CartController::class, 'cartStore'])->name('cart.store');
 Route::post('/cart/delete', [App\Http\Controllers\Frontend\CartController::class, 'deleteCart'])->name('cart.delete');
+Route::post('/cart/update', [App\Http\Controllers\Frontend\CartController::class, 'updateCart'])->name('cart.update');
 
+//cupon
+Route::post('/cupon/add', [App\Http\Controllers\Frontend\CartController::class, 'cuponAdd'])->name('cupon.add');
 
 Auth::routes([
   //  'register'=>false
@@ -43,4 +46,6 @@ Route::group(['prefix'=>'admin/','middleware'=>'auth'],function(){
       Route::resource('product',App\Http\Controllers\ProductController::class);
       // user
       Route::resource('user',App\Http\Controllers\UserController::class);
+       // cupon
+       Route::resource('cupon',App\Http\Controllers\CuponController::class);
 });

@@ -198,8 +198,7 @@
             <div>
                 <div class="ps-newsletter mt-40">
                     <div class="ps-container newsletter-form">
-                        <form class="ps-form--newsletter" method="post"
-                            action="https://martfury.botble.com/newsletter/subscribe">
+                        <form class="ps-form--newsletter" method="post" action="">
                             <div class="row">
                                 <div class="col-xl-5">
                                     <div class="ps-form__left">

@@ -83,9 +83,8 @@
                                         ({{$product->stock}} products available)
                                     </span>
                                 </div>
-                                <form class="add-to-cart-form" method="POST"
-                                    action="https://martfury.botble.com/cart/add-to-cart">
-                                    <input type="hidden" name="_token" value="rGmIhzQnCbJ4DnAl8M7QwSPlWCLmWeec3trz3hfr">
+                                <form class="add-to-cart-form" method="POST" action="">
+
                                     <div class="ps-product__shopping">
                                         <figure>
                                             <figcaption>Quantity</figcaption>
@@ -97,12 +96,12 @@
                                             </div>
                                         </figure>
                                         <input type="hidden" name="id" class="hidden-product-id" value="24">
-                                        <button class="ps-btn ps-btn--black " type="submit">Add to cart</button>
+                                        <button class="ps-btn ps-btn--black add-to-cart-button " data-quantity="1"
+                                            data-product-id="{{$product->id}}" id="add-to-cart-{{$product->id}}"
+                                            type="submit">Add to cart</button>
                                         <button class="ps-btn " type="submit" name="checkout">Buy Now</button>
                                         <div class="ps-product__actions">
-                                            <a class="js-add-to-wishlist-button" href="#"
-                                                data-url="https://martfury.botble.com/wishlist/1"><i
-                                                    class="icon-heart"></i></a>
+                                            <a class="js-add-to-wishlist-button" href="#"><i class="icon-heart"></i></a>
                                         </div>
                                     </div>
                                 </form>
@@ -189,9 +188,10 @@
                                             <div class="ps-product__badge">
                                                 {{round((($product->discount/$product->price)*100),2)}}%</div>
                                             <ul class="ps-product__actions">
-                                                <li><a class="add-to-cart-button" data-id="2" href="#"
-                                                        data-url="https://martfury.botble.com/cart/add-to-cart"
-                                                        title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                                <li><a class="add-to-cart-button" data-quantity="1"
+                                                        data-product-id="{{$product->id}}"
+                                                        id="add-to-cart-{{$product->id}}" title="Add To Cart"><i
+                                                            class="icon-bag2"></i></a></li>
                                                 <li><a class="js-quick-view-button" href="#"
                                                         data-url="https://martfury.botble.com/ajax/quick-view/2"
                                                         title="Quick View"><i class="icon-eye"></i></a></li>

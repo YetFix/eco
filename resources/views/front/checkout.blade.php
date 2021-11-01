@@ -11,7 +11,7 @@
                     <div class="d-block d-sm-none">
                         <div class="checkout-logo">
                             <div class="container">
-                                <a href="https://martfury.botble.com" title="Martfury - Laravel Ecommerce system">
+                                <a href="" title="Bshuddhoshop - Laravel Ecommerce system">
                                     <h2>Bshuddhoshop</h2>
                                 </a>
                             </div>
@@ -75,10 +75,24 @@
                                                         name="shipping_method[3]" id="shipping-method-3-default-1"
                                                         checked="" value="default" data-option="1" data-id="3">
                                                     <label for="shipping-method-3-default-1">
-                                                        Delivery -
-                                                        <strong>Free shipping</strong>
+                                                        Delivery Charge -
+                                                        <strong>Inside Dhaka-60BDT.</strong>
                                                     </label>
+
                                                 </li>
+                                                <li class="list-group-item">
+                                                    <input class="magic-radio shipping_method_input" type="radio"
+                                                        name="shipping_method[3]" id="shipping-method-3-default-1"
+                                                        checked="" value="default" data-option="1" data-id="3">
+                                                    <label for="shipping-method-3-default-1">
+                                                        Delivery Charge -
+                                                        <strong>Outside Dhaka-120BDT.</strong>
+                                                    </label>
+
+                                                </li>
+
+
+
                                             </ul>
                                         </div>
                                     </div>
@@ -104,14 +118,6 @@
                             </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <p>Tax:</p>
-                                </div>
-                                <div class="col-6 float-end">
-                                    <p class="price-text tax-price-text">$67.73</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
                                     <p><strong>Total</strong>:</p>
                                 </div>
                                 <div class="col-6 float-end">
@@ -126,13 +132,8 @@
                 <div class="col-lg-7 col-md-6 left">
 
                     <div class="form-checkout">
-
-                        <input type="hidden" name="_token" value="05b98l7yxjRjUVrM47l10tlS3EL3HiZ5E2zJ81tT">
                         <div>
                             <h5 class="checkout-payment-title">Shipping information</h5>
-                            <input type="hidden"
-                                value="https://martfury.botble.com/checkout/fc6f48ec949f1c8e792c515e0440936c/information"
-                                id="save-shipping-information-url">
                             <div class="customer-address-payment-form">
                                 <div class="form-group mb-3">
                                     <p>Already have an account? <a href="/login">Login</a>
@@ -454,33 +455,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group mb-3">
-                                            <input type="checkbox" name="create_account" value="1" id="create_account">
-                                            <label for="create_account" class="control-label"
-                                                style="padding-left: 5px">Register an account with above
-                                                information?</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="password-group" style="display: none;">
-                                    <div class="row">
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <input id="password" type="password" class="form-control checkout-input"
-                                                    name="password" placeholder="Password">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <input id="password-confirm" type="password"
-                                                    class="form-control checkout-input"
-                                                    placeholder="Password confirmation" name="password_confirmation">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <br>
@@ -491,11 +465,7 @@
                                 </div>
                             </div>
                             <h5 class="checkout-payment-title">Payment method</h5>
-                            <input type="hidden" name="amount" value="745.052">
-                            <input type="hidden" name="currency" value="USD">
-                            <input type="hidden" name="callback_url" value="https://martfury.botble.com/payment/status">
-                            <input type="hidden" name="return_url"
-                                value="https://martfury.botble.com/checkout/fc6f48ec949f1c8e792c515e0440936c/success">
+
                             <ul class="list-group list_payment_method">
 
                                 <li class="list-group-item">
@@ -504,10 +474,6 @@
                                         data-bs-target=".payment_cod_wrap" data-parent=".list_payment_method"
                                         aria-expanded="true">
                                     <label for="payment_cod" class="text-start">Cash on delivery (COD)</label>
-                                    <div class="payment_cod_wrap payment_collapse_wrap" style="padding: 15px 0px;">
-                                        Please pay money directly to the postman, if you choose cash on delivery method
-                                        (COD).
-                                    </div>
                                 </li>
                                 <li class="list-group-item">
                                     <input class="magic-radio js_payment_method" type="radio" name="payment_method"
@@ -519,7 +485,7 @@
                                         style="padding: 15px 0px;">
                                         Send Bksh to our account:01681046437
                                         Transaction id: <br>
-                                        <input type="text" name="bksh" id="bksh">
+                                        <input type="text" class="form-control" name="bksh" id="bksh">
                                     </div>
                                 </li>
                                 <li class="list-group-item">
@@ -532,38 +498,26 @@
                                         style="padding: 15px 0px;">
                                         Send Nagad to our account:01681046437
                                         Transaction id: <br>
-                                        <input type="text" name="ngd" id="ngd">
+                                        <input type="text" class="form-control" name="ngd" id="ngd">
                                     </div>
                                 </li>
                             </ul>
                         </div>
                         <br>
-                        <div class="form-group mb-3 ">
-                            <label for="description" class="control-label">Order notes</label>
-                            <br>
-                            <textarea name="description" id="description" rows="3" class="form-control"
-                                placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
-                        </div>
                         <div class="form-group mb-3">
-                            <div class="row">
+                            <div class="row d-flex justify-content-between">
                                 <div class="col-md-6 d-none d-md-block" style="line-height: 53px">
-                                    <a class="text-info" href="https://martfury.botble.com/cart"><i
-                                            class="fas fa-long-arrow-alt-left"></i> <span
-                                            class="d-inline-block back-to-cart">Back to cart</span></a>
+                                    <a class="text-info" href="/cart"><i class="fas fa-long-arrow-alt-left"></i> <span
+                                            class="d-inline-block back-to-cart btn btn-warning btn-lg">Back to
+                                            cart</span></a>
                                 </div>
-                                <div class="col-md-6 checkout-button-group">
-                                    <button type="submit"
-                                        class="btn payment-checkout-btn payment-checkout-btn-step float-end mt-5"
-                                        data-processing-text="Processing. Please wait..." data-error-header="Error">
-                                        <button class="btn btn-lg btn-warning">Checkout</button>
-                                    </button>
+                                <div class="col-md-6 d-none d-md-block" style="line-height: 53px">
+                                    <a class="text-info"><i class="fas fa-long-arrow-alt-left"></i> <span
+                                            class="d-inline-block back-to-cart btn btn-primary btn-lg">Confirm
+                                            Order</span></a>
                                 </div>
                             </div>
-                            <div class="d-block d-md-none back-to-cart-button-group ">
-                                <a class="text-info" href="https://martfury.botble.com/cart"><i
-                                        class="fas fa-long-arrow-alt-left"></i> <span class="d-inline-block">Back to
-                                        cart</span></a>
-                            </div>
+
                         </div>
 
                     </div>

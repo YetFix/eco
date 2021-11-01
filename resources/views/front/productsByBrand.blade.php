@@ -71,10 +71,10 @@
                                             <div class="ps-product__badge">
                                                 {{round((($product->discount/$product->price)*100),2)}}%</div>
                                             <ul class="ps-product__actions">
-                                                <li><a data-id="1" href="#"
-                                                        data-url="https://martfury.botble.com/cart/add-to-cart"
-                                                        title="Add To Cart" class="add-to-cart-button"><i
-                                                            class="icon-bag2"></i></a></li>
+                                                <li><a class="add-to-cart-button" data-quantity="1"
+                                                        data-product-id="{{$product->id}}"
+                                                        id="add-to-cart-{{$product->id}}" title="Add To Cart"
+                                                        class="add-to-cart-button"><i class="icon-bag2"></i></a></li>
                                                 <li><a href="#" data-url="https://martfury.botble.com/ajax/quick-view/1"
                                                         title="Quick View" class="js-quick-view-button"><i
                                                             class="icon-eye"></i></a></li>
